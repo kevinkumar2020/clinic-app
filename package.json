@@ -9,8 +9,10 @@
     "install-client": "cd client && npm install",
     "start": "node index.js",
     "client": "cd client && npm start",
+    "run-app": "npm start && npm run client",
     "heroku-postbuild": "npm run install-client && npm run build",
-    "dev": "nodemon index.js"
+    "start-watch": "nodemon index.js",
+    "dev": "concurrently \"npm run start-watch\" \"cd client && npm start\""
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +25,8 @@
     "mongoose": "^6.2.8",
     "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "concurrently": "^7.1.0"
   }
 }

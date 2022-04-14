@@ -15,7 +15,11 @@ const medicinedetails = require('./src/routes/medicinedetails');
 const appoinment = require('./src/routes/appoinment');
 const userBookAppoinment = require('./src/routes/userBookAppoinment');
 
-const port = process.env.POST || 4000;
+const port = process.env.PORT || 4000;
+
+if(process.env.NODE_ENV === "production"){
+    app.use(express.static('client/build'));
+}
 
 app.use(patientdetails);
 app.use(helthdetails);
@@ -24,8 +28,4 @@ app.use(medicinedetails);
 app.use(appoinment);
 app.use(userBookAppoinment);
 
-if(process.env.NODE_ENV == "production"){
-    app.use(express.static("client/build"));
-}
-
-app.listen(port, () => console.log(`App Runing on post : ${port}`))
+app.listen(port, () => console.log(`App Runing on port : ${port}`))
